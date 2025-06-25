@@ -5,12 +5,15 @@ let operator;
 let num1 = "";
 let num2 = "";
 let mathOperator = "";
-
+let justEvaluated = false;
 function populate(x) {
-    if (!mathOperator)
-    {
+
+    if(justEvaluated == true){
         num1 = "";
+        document.getElementById("display").innerHTML = x;
+        justEvaluated = false;
     }
+
     if (mathOperator) {
         num2 += x;
         document.getElementById("display").innerHTML = num2;
@@ -146,6 +149,7 @@ function operate(operator, n1, n2) {
             num1 = eval(n1 + mathOperator + n2);
             num2 = "";
             mathOperator = "";
+            justEvaluated = true;
         }
         catch (err) {
             alert("Please enter a number, a operator, and then another number in that order first ;)")
